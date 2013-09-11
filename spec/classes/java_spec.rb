@@ -10,14 +10,16 @@ describe "java" do
       :ensure   => 'present',
       :alias    => 'java-jre',
       :provider => 'pkgdmg',
-      :source   => '/test/boxen/repo/.tmp/jre.dmg'
+      :source   => '/test/boxen/repo/.tmp/jre.dmg',
+      :require  => 'Exec[download-jre]',
     })
 
     should contain_package('jdk.dmg').with({
       :ensure   => 'present',
       :alias    => 'java',
       :provider => 'pkgdmg',
-      :source   => '/test/boxen/repo/.tmp/jdk.dmg'
+      :source   => '/test/boxen/repo/.tmp/jdk.dmg',
+      :require  => 'Exec[download-jdk]',
     })
 
     should contain_file('/test/boxen/bin/java').with({

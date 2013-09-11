@@ -30,12 +30,14 @@ class java {
       ensure   => present,
       alias    => 'java-jre',
       provider => pkgdmg,
-      source   => $jre_dmg_location ;
+      source   => $jre_dmg_location,
+      require  => Exec['download-jre'];
     'jdk.dmg':
       ensure   => present,
       alias    => 'java',
       provider => pkgdmg,
-      source   => $jdk_dmg_location ;
+      source   => $jdk_dmg_location,
+      require  => Exec['download-jdk'];
   }
 
   file { $wrapper:
