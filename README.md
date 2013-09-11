@@ -1,8 +1,8 @@
 # Java Puppet Module for Boxen
 
-[![Build Status](https://travis-ci.org/boxen/puppet-java.png?branch=master)](https://travis-ci.org/boxen/puppet-java)
+[![Build Status](https://travis-ci.org/aripalo/puppet-java.png?branch=master)](https://travis-ci.org/aripalo/puppet-java)
 
-Installs Java 7u21.
+Installs Java 7u40.
 
 ## Usage
 
