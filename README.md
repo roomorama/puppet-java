@@ -1,8 +1,6 @@
 # Java Puppet Module for Boxen
 
-[![Build Status](https://travis-ci.org/aripalo/puppet-java.png?branch=master)](https://travis-ci.org/aripalo/puppet-java)
-
-Installs Java 7u40.
+Installs Java 7u40 for 64-bit Mac OSX and the Java Cryptography Extensions (JCE).
 
 ## Usage
 
