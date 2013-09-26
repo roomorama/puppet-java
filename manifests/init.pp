@@ -15,7 +15,7 @@ class java {
 
   $jre_dmg_location = "${boxen::config::home}/repo/.tmp/jre.dmg"
   $jdk_dmg_location = "${boxen::config::home}/repo/.tmp/jdk.dmg"
-  #jce_zip_location = "${boxen::config::home}/repo/.tmp/jce.zip"
+  $jce_zip_location = "${boxen::config::home}/repo/.tmp/jce.zip"
 
   $wrapper = "${boxen::config::bindir}/java"
 
@@ -57,7 +57,7 @@ class java {
   }
 
   exec { 'install-jce':
-    command => "unzip -f -j -o ${jce_zip_location} -d ${jce_path}",
+    command => "unzip -fjo -d ${jce_path} ${jce_zip_location}",
     require => Exec['download-jce'],
     onlyif  => ["test -e ${jce_zip_location}", "test -d ${jce_path}"]
   }
