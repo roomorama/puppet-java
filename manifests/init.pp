@@ -29,11 +29,6 @@ class java {
     creates   => $jdk_dmg_location,
   }
 
-  exec { 'download-jce':
-    command   => "/usr/bin/curl -o ${jce_zip_location} -C -k -L -s --header 'Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F;' http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip",
-    creates   => $jce_zip_location,
-  }
-
   package {
     'jre.dmg':
       ensure   => present,
@@ -55,9 +50,15 @@ class java {
     require => Package['java']
   }
 
+  exec { 'download-jce':
+    command => "/usr/bin/curl -o ${jce_zip_location} -C -k -L -s --header 'Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F;' http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip",
+    creates => $jce_zip_location,
+    require => Package['jdk.dmg'],
+  }
+
   exec { 'install-jce':
-    command     => "unzip -j -o $jce_zip_location -d $jce_path",
-    subscribe   => Exec['download-jdk'],
-    onlyif      => ["test -e $jce_zip_location", "test -d $jce_path"]
+    command => "unzip -j -o $jce_zip_location -d $jce_path",
+    require => Exec['download-jce'],
+    onlyif  => ["test -e $jce_zip_location", "test -d $jce_path"]
   }
 }
