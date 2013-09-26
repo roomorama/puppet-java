@@ -56,7 +56,8 @@ class java {
   }
 
   exec { 'install-jce':
-    command => "unzip -j -o $jce_zip_location -d $jce_path",
-    onlyif => ["test -e $jce_zip_location", "test -d $jce_path"]
+    command     => "unzip -j -o $jce_zip_location -d $jce_path",
+    subscribe   => Exec['download-jdk'],
+    onlyif      => ["test -e $jce_zip_location", "test -d $jce_path"]
   }
 }
