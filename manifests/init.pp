@@ -51,7 +51,7 @@ class java {
   }
 
   exec { 'download-jce':
-    command => "/usr/bin/curl -o ${jce_zip_location} -C -k -L -s --header 'Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F;' http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip",
+    command => "/usr/bin/curl -o ${jce_zip_location} -k -L -s --header 'Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F;' http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip",
     creates => $jce_zip_location,
     require => Package['java'],
   }
